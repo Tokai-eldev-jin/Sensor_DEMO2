@@ -466,7 +466,7 @@ def getid(g_title,g_class=None):
         if hwnd != 0:
             g.g_title=GetWindowText(hwnd)
             g.g_class=GetClassName(hwnd)
-            print(g.g_title+","+g.g_class)
+            ##print(g.g_title+","+g.g_class)
         return hwnd
 
 
@@ -513,8 +513,8 @@ def ctrlwin(hwnd,meirei):
         #win32gui.SetWindowPos(hwnd,win32con.HWND_TOPMOST,0,0,0,0,win32con.SWP_NOMOVE | win32con.SWP_NOSIZE)
         win32gui.SetWindowPos(hwnd,-1,0,0,0,0,win32con.SWP_NOMOVE | win32con.SWP_NOSIZE)
         left, top, right, bottom = win32gui.GetWindowRect(hwnd)
-        pyautogui.moveTo(left+60, top + 10)
-        pyautogui.click()
+##        pyautogui.moveTo(left+60, top + 10)
+##        pyautogui.click()
     elif meirei == "fs_notopmost":
         win32gui.SetWindowPos(hwnd,-2,0,0,0,0,win32con.SWP_NOMOVE | win32con.SWP_NOSIZE)
         left, top, right, bottom = win32gui.GetWindowRect(hwnd)
@@ -2995,9 +2995,9 @@ def popupmenu(selectpopup,msg= "選択してください"):
     win=getid("all_win")
     for i in range(0,len(g.all_win)):
         if pos("PopupMenu",g.all_win[i]) > 0 and pos("Chrome",g.all_win[i]) > 0:
-            id=copy(g.all_win[i],1,pos(",",g.all_win[i])-1)
+            hwnd=int(copy(g.all_win[i],1,pos(",",g.all_win[i])-1))
             break
-    ctrlwin(id,"fs_show")
+    ##ctrlwin(hwnd,"fs_show")
 
     BusyWait(g.driver0)
     g.driver0.execute_script("return document.getElementById('sel').focus()")
@@ -3014,9 +3014,9 @@ def popupmenu(selectpopup,msg= "選択してください"):
                     win=getid("all_win")
                     for i in range(0,len(g.all_win)):
                         if pos("PopupMenu",g.all_win[i]) > 0 and pos("Chrome",g.all_win[i]) > 0:
-                            id=copy(g.all_win[i],1,pos(",",g.all_win[i])-1)
+                            hwmd=int(copy(g.all_win[i],1,pos(",",g.all_win[i])-1))
                             break
-                    ctrlwin(id,"fs_min")
+                    ctrlwin(hwnd,"fs_min")
                     return -1
                 else:
                     getnum = int(getdata)
@@ -3025,9 +3025,9 @@ def popupmenu(selectpopup,msg= "選択してください"):
                     win=getid("all_win")
                     for i in range(0,len(g.all_win)):
                         if pos("PopupMenu",g.all_win[i]) > 0 and pos("Chrome",g.all_win[i]) > 0:
-                            id=copy(g.all_win[i],1,pos(",",g.all_win[i])-1)
+                            hwnd=int(copy(g.all_win[i],1,pos(",",g.all_win[i])-1))
                             break
-                    ctrlwin(id,"fs_min")
+                    ctrlwin(hwnd,"fs_min")
                     return getnum
 
             sleep(10)
